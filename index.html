@@ -144,11 +144,25 @@
     .impact-grid{grid-template-columns:1fr;}
     .skill-grid{grid-template-columns:1fr;}
     .contact-panel{flex-direction:column; align-items:flex-start;}
+    nav .wrap{gap:14px;}
+    .nav-id{flex-shrink:0;}
+    .nav-links{gap:16px; overflow-x:auto; white-space:nowrap; scrollbar-width:none; -webkit-mask-image:linear-gradient(to right,#000 85%,transparent);}
+    .nav-links::-webkit-scrollbar{display:none;}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
     .card{transition:none;}
   }
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:var(--radius); overflow:hidden; max-width:720px;}
+  .stat{background:var(--panel); padding:16px 18px;}
+  .stat .n{font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700; color:var(--mint); line-height:1.1;}
+  .stat .l{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); margin-top:4px;}
+  .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:32px;}
+  .btn{font-family:'IBM Plex Mono',monospace; font-size:12.5px; padding:9px 16px; border-radius:6px; text-decoration:none; border:1px solid var(--rule); color:var(--text); transition:border-color .15s, color .15s;}
+  .btn.primary{background:var(--mint); color:#0F1214; border-color:var(--mint); font-weight:600;}
+  .btn:hover{border-color:var(--mint); color:var(--mint);}
+  .btn.primary:hover{color:#0F1214; filter:brightness(1.08);}
+  @media (max-width:680px){ .stats{grid-template-columns:repeat(2,1fr);} }
   .reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
 </style>
@@ -164,6 +178,7 @@
       <a href="#impact">Impact</a>
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
+      <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -172,13 +187,25 @@
 <header class="hero">
   <div class="wrap">
     <h1 class="name">Guna Sekhar Thageeru</h1>
-    <p class="role">Backend Developer, <span>E-commerce Systems</span></p>
+    <p class="role">Magento Backend Developer, <span>E-commerce Systems</span></p>
     <p class="location mono">Bengaluru, India · FreshToHome</p>
     <p class="lede">
       I build and maintain the backend of a production grocery e-commerce platform on Magento —
-      pricing engines, order and refund workflows, loyalty and cashback systems, and the
-      integrations that keep them running across India and the UAE.
+      promotions and pricing engines, checkout, order and refund workflows, loyalty and cashback
+      systems, B2B and marketplace integrations, and the production debugging that keeps them
+      running across India and the UAE.
     </p>
+    <div class="hero-actions">
+      <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">Download resume</a>
+      <a class="btn" href="#projects">See projects</a>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">500+</div><div class="l">work items delivered</div></div>
+      <div class="stat"><div class="n">140+</div><div class="l">production bugs fixed</div></div>
+      <div class="stat"><div class="n">30+</div><div class="l">root-cause analyses</div></div>
+      <div class="stat"><div class="n">70+</div><div class="l">pull requests merged</div></div>
+    </div>
   </div>
 </header>
 
@@ -195,7 +222,7 @@
           <span class="entry-time mono">SEP — DEC 2024</span>
           <span class="entry-title">Onboarding &amp; First Features</span>
         </div>
-        <p class="entry-desc">Ramped up on Magento's order/catalog flows through real production work: order-label printing (UAE, delivery slot), packing-list corrections (dairy/dosa batter), invoice-quantity fixes, account deletion flow, recipe blog CMS, and Amazon Express order time validation. Delivered my first end-to-end feature — Partner Pricelist Modification — by December.</p>
+        <p class="entry-desc">Ramped up on Magento's order/catalog flows through real production work: order-label printing (UAE, delivery slot), packing-list corrections (dairy/dosa batter), invoice-quantity fixes, account deletion flow, recipe blog CMS, and Amazon Express order time validation. Delivered my first end-to-end feature — a B2B Partner Pricelist engine — by December.</p>
         <div class="entry-tags"><span class="tag">Magento fundamentals</span><span class="tag">REST APIs</span><span class="tag">Postman</span><span class="tag">Partner Pricelist</span></div>
       </div>
 
@@ -204,7 +231,7 @@
           <span class="entry-time mono">JAN — SEP 2025</span>
           <span class="entry-title">Core Contributor</span>
         </div>
-        <p class="entry-desc">Moved to independent feature delivery: cut app-init load time, fixed a UTC/IST timezone bug in stock-movement history, added TTL-based caching for store info, shipped nearest-address detection, shelf-life display, COD visibility controls, Express category rollout for Kerala FTU users, map provider configuration, order edit cart flow, landing price validation, and Kafka integration for AmazonEDI invoices.</p>
+        <p class="entry-desc">Moved to independent feature delivery: cut app-init load time, fixed a UTC/IST timezone bug in stock-movement history, added TTL-based caching for store info, shipped nearest-address detection, shelf-life display, COD visibility controls, Express category rollout for Kerala FTU users, map provider configuration, order edit cart flow, a 3-tier landing cost deviation guard, COD fallback on payment retries, FTH-Daily Kafka timeout hardening, and Kafka integration for Amazon EDI invoices.</p>
         <div class="entry-tags"><span class="tag">Performance</span><span class="tag">Caching</span><span class="tag">Geolocation</span><span class="tag">Kafka</span><span class="tag">Order lifecycle</span></div>
       </div>
 
@@ -213,8 +240,8 @@
           <span class="entry-time mono">OCT 2025 — PRESENT</span>
           <span class="entry-title">Feature Owner &amp; Senior Contributor</span>
         </div>
-        <p class="entry-desc">Took full ownership of major initiatives end to end: product alias naming system, VIP/Purple Cash loyalty revamp (Phase 2), cross-region SMS and push-notification reliability fix, and Split Banner CMS support. Currently contributing to the backend of a real-time dynamic pricing engine as part of the team, including an approver workflow for pricing rules. Managed 40+ production deployments.</p>
-        <div class="entry-tags"><span class="tag">System ownership</span><span class="tag">Cross-region</span><span class="tag">Architecture</span><span class="tag">Dynamic pricing</span></div>
+        <p class="entry-desc">Took full ownership of major initiatives end to end: product alias naming system, VIP/Purple Cash loyalty revamp (Phase 2), cross-region SMS and push-notification reliability fix, and Split Banner CMS support. Integrated Magento with a real-time Dynamic Pricing Engine and hybrid flash sales, built Maker-Checker governance and auto-suspension for promotion rules, and led production RCAs on inventory, checkout and promotion incidents. Managed 40+ production deployments.</p>
+        <div class="entry-tags"><span class="tag">System ownership</span><span class="tag">Cross-region</span><span class="tag">Architecture</span><span class="tag">Dynamic pricing</span><span class="tag">Promotion governance</span><span class="tag">RCA</span></div>
       </div>
     </div>
 
@@ -232,11 +259,38 @@
 
       <div class="card reveal">
         <div class="card-top">
-          <div><div class="card-title">Dynamic Pricing Engine</div><div class="card-period mono">May 2026 — Present</div></div>
+          <div><div class="card-title">Promotion Governance: Maker-Checker &amp; Auto-Suspension</div><div class="card-period mono">Jul 2026 — Present</div></div>
+          <span class="pill done">Shipped</span>
+        </div>
+        <p class="card-desc">Built a custom Magento module that stops unreviewed discounts from going live. Rule creators can't approve their own rules, and unapproved rules stay limited to employees. A circuit breaker automatically suspends any rule giving more than 30% off and emails leadership. Server-side validation blocks parent/non-sellable SKUs in auto-add actions and makes rule conditions mandatory. This was built after RCAs on real promotion incidents, to protect revenue during festival sales.</p>
+        <div class="card-meta"><span class="tag">Cart price rules</span><span class="tag">Approval workflow</span><span class="tag">Circuit breaker</span><span class="tag">Revenue protection</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top">
+          <div><div class="card-title">Negative Inventory RCA &amp; Stock Safety</div><div class="card-period mono">Aug — Oct 2026</div></div>
+          <span class="pill done">Shipped</span>
+        </div>
+        <p class="card-desc">Investigated why 500+ SKUs in the Bangalore hub went deeply negative every day. Traced it to concurrent automated hub-transfer requests that skipped inventory checks, then designed row-level locking (SELECT … FOR UPDATE) with universal stock validation. Earlier, added an exemption flag so Delhi warehouses could transfer their last units without hitting a static buffer.</p>
+        <div class="card-meta"><span class="tag">Concurrency</span><span class="tag">MySQL locking</span><span class="tag">Inventory</span><span class="tag">Root-cause analysis</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top">
+          <div><div class="card-title">Landing Cost Deviation Guard</div><div class="card-period mono">Jul 2025</div></div>
+          <span class="pill done">Shipped</span>
+        </div>
+        <p class="card-desc">Operators sometimes typed product IDs into the landing price field, which inflated cost of goods sold. I built a check that compares each new cost against 7 days of historical rates. Changes of 0–10% are accepted, 10–50% show a warning, and anything over 50% is blocked unless a Super-Admin overrides it. It works on shipments and on CSV imports, with colour-coded preview rows.</p>
+        <div class="card-meta"><span class="tag">Data validation</span><span class="tag">Admin tooling</span><span class="tag">Finance accuracy</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top">
+          <div><div class="card-title">Dynamic Pricing Engine &amp; Flash Sales</div><div class="card-period mono">Feb 2026 — Present</div></div>
           <span class="pill progress">Phase 2 in progress</span>
         </div>
-        <p class="card-desc">Contributing to the backend for real-time and flash-sale pricing across the catalog, as part of the team building it: a caching layer for flash-sale data, store-level price resolution fixes, fallback logic for cashback edge cases, configurable cURL timeouts for catalog service, and rule validation behind a new approver workflow. Phase 1 is live in production; Phase 2's public API validation is underway. Wrote the SOP documentation for the feature.</p>
-        <div class="card-meta"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Caching</span><span class="tag">API design</span><span class="tag">Approver workflow</span></div>
+        <p class="card-desc">Contributing to the backend for real-time and flash-sale pricing across the catalog, as part of the team building it: a caching layer for flash-sale data, store-level price resolution fixes, fallback logic for cashback edge cases, configurable cURL timeouts for catalog service, and rule validation behind a new approver workflow. Phase 1 is live in production; Phase 2's public API validation is underway. Built metadata APIs for the engine (categories, customer groups, stock IDs), customer session sync on pincode change, and hybrid flash sales that merge engine and native Magento items (12-item cap, deduplication, shared countdown). Also built an hourly cron that emails CSV alerts when combo prices drift. Wrote the SOP documentation for the feature.</p>
+        <div class="card-meta"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Caching</span><span class="tag">API design</span><span class="tag">Microservices</span><span class="tag">Flash sales</span><span class="tag">Cron alerts</span></div>
       </div>
 
       <div class="card reveal">
@@ -271,7 +325,7 @@
           <div><div class="card-title">Checkout &amp; Pricing Accuracy</div><div class="card-period mono">Dec 2025 — Jun 2026</div></div>
           <span class="pill done">Shipped</span>
         </div>
-        <p class="card-desc">Fixed a checkout grand total miscalculation affecting all FreshCash orders platform-wide (app/msite/desktop). Removed confusing SKU size/weight from checkout flow. Fixed purple plan removal when cart has FTHD + combo. Corrected referral code issues and combo pricing edge cases. Added terms and conditions to desktop review page.</p>
+        <p class="card-desc">Fixed a checkout grand total miscalculation affecting all FreshCash orders platform-wide (app/msite/desktop). Removed confusing SKU size/weight from checkout flow. Fixed purple plan removal when cart has FTHD + combo. Corrected referral code issues and combo pricing edge cases. Added terms and conditions to desktop review page. Kept COD available when a Juspay payment retry fails. Exempted virtual VIP subscription products from inventory checks, which ended false out-of-stock cancellations.</p>
         <div class="card-meta"><span class="tag">Revenue-critical fix</span><span class="tag">Checkout flow</span><span class="tag">Multi-platform</span></div>
       </div>
 
@@ -286,11 +340,11 @@
 
       <div class="card reveal">
         <div class="card-top">
-          <div><div class="card-title">Partner Pricelist Modification</div><div class="card-period mono">Dec 2024 — Feb 2025</div></div>
+          <div><div class="card-title">B2B Partner Pricelist Engine</div><div class="card-period mono">Dec 2024 — Feb 2025</div></div>
           <span class="pill done">Shipped</span>
         </div>
-        <p class="card-desc">First major feature ownership: DB schema changes for partner price/catalog fields, functional and UI changes for new admin fields, and price calculation logic for partner-based pricing.</p>
-        <div class="card-meta"><span class="tag">MySQL migrations</span><span class="tag">Admin UI</span><span class="tag">Price logic</span></div>
+        <p class="card-desc">First major feature ownership. I built tiered partner pricing (markup minus product discount minus partner discount), a margin threshold check during order creation, inline-editable admin grids, and a weekly cron that emails CSV pricelists to partners such as Swiggy and Dunzo. If an item has had no stock for 5 days, its price shows as N/A.</p>
+        <div class="card-meta"><span class="tag">MySQL migrations</span><span class="tag">Admin UI</span><span class="tag">Price logic</span><span class="tag">Cron</span></div>
       </div>
 
       <div class="card reveal">
@@ -298,7 +352,7 @@
           <div><div class="card-title">Amazon EDI &amp; Kafka Integration</div><div class="card-period mono">Aug — Nov 2025</div></div>
           <span class="pill done">Shipped</span>
         </div>
-        <p class="card-desc">Configured Kafka topics for Amazon EDI orders. Implemented event-driven messaging that fires a Kafka message once an AmazonEDI order is invoiced. Added Amazon Express time validation to prevent orders outside valid windows.</p>
+        <p class="card-desc">Configured Kafka topics for Amazon EDI orders. Bound an invoice-save observer that streams structured payloads (PO number, TRN, line-item VAT, ASIN) to Kafka once an Amazon UAE order is invoiced, which replaced manual EDI entry. I also hardened the FTH → FTH-Daily Kafka publisher with 5-second cURL timeouts and diagnostic logging, which stopped orders from being dropped silently. Added Amazon Express time validation to prevent orders outside valid windows.</p>
         <div class="card-meta"><span class="tag">Kafka</span><span class="tag">Event-driven</span><span class="tag">Partner integration</span></div>
       </div>
 
@@ -347,6 +401,15 @@
         <div class="card-meta"><span class="tag">Billing flows</span><span class="tag">Credit memo</span><span class="tag">HSN compliance</span></div>
       </div>
 
+      <div class="card reveal">
+        <div class="card-top">
+          <div><div class="card-title">Logistics Labels, Compliance &amp; App Config</div><div class="card-period mono">Oct 2024 — Jul 2025</div></div>
+          <span class="pill done">Shipped</span>
+        </div>
+        <p class="card-desc">Redesigned UAE thermal shipping labels (Amazon locality, delivery slots, Emirates names) and fixed veg packing lists for the factory. Built an account deletion flow that meets App Store and Play Store rules, with reason tracking and a server-driven privacy policy. Added supplier batch QR pages for food-safety traceability, shelf-life attributes for ready-to-cook products, and server-driven map provider config (OSM, OLA, 2GIS, Google) so maps can be switched without an app release.</p>
+        <div class="card-meta"><span class="tag">Order printing</span><span class="tag">Privacy compliance</span><span class="tag">Server-driven config</span></div>
+      </div>
+
     </div>
 
   </div>
@@ -367,6 +430,8 @@
       <div class="impact-item"><div class="h">Operational efficiency</div><div class="b">Extended shipment reconciliation windows 30→60 days, automated stock-movement via CSV scripts, and created Eggs category reporting.</div></div>
       <div class="impact-item"><div class="h">Production stability</div><div class="b">Managed 40+ production deployments with verification, dry-run scripts, and rollback readiness. Zero rollbacks needed.</div></div>
       <div class="impact-item"><div class="h">Dynamic pricing</div><div class="b">Contributed to Phase 1 of a real-time pricing engine serving the entire product catalog, including caching and fallback mechanisms.</div></div>
+      <div class="impact-item"><div class="h">Promotion safety</div><div class="b">Maker-Checker approvals and 30% auto-suspension mean no unreviewed or oversized discount can go live during sales.</div></div>
+      <div class="impact-item"><div class="h">Inventory integrity</div><div class="b">Found the cause of daily negative stock on 500+ SKUs and designed a row-locking fix. Also blocked mistyped landing costs from distorting the accounts.</div></div>
       <div class="impact-item"><div class="h">Cross-region support</div><div class="b">All features built to work across India and UAE markets — different gateways, currencies, timezone handling (UTC→IST).</div></div>
     </div>
 
@@ -390,19 +455,19 @@
       </div>
       <div class="skill-group">
         <div class="k">Backend &amp; APIs</div>
-        <div class="skill-chips"><span class="chip">Magento 2</span><span class="chip">REST API design &amp; extension</span><span class="chip">MVC architecture</span><span class="chip">Order lifecycle management</span><span class="chip">Refund / credit memo workflows</span><span class="chip">Admin dashboard customization</span><span class="chip">cURL integrations</span></div>
+        <div class="skill-chips"><span class="chip">Magento 1.x (production)</span><span class="chip">Magento 2 concepts</span><span class="chip">Custom modules &amp; observers</span><span class="chip">Cart price rules</span><span class="chip">EAV attributes</span><span class="chip">REST API design &amp; extension</span><span class="chip">MVC architecture</span><span class="chip">Order lifecycle management</span><span class="chip">Refund / credit memo workflows</span><span class="chip">Admin dashboard customization</span><span class="chip">cURL integrations</span><span class="chip">Microservice integration</span></div>
       </div>
       <div class="skill-group">
         <div class="k">Tools &amp; Platforms</div>
-        <div class="skill-chips"><span class="chip">Kafka (Red Panda)</span><span class="chip">In-memory caching (TTL)</span><span class="chip">Shell scripting</span><span class="chip">Git / Bitbucket</span><span class="chip">Jira</span><span class="chip">Confluence</span><span class="chip">Postman</span><span class="chip">Linux</span><span class="chip">VS Code</span></div>
+        <div class="skill-chips"><span class="chip">Kafka (Red Panda)</span><span class="chip">In-memory caching (TTL)</span><span class="chip">Shell scripting</span><span class="chip">Git / Bitbucket</span><span class="chip">Jira</span><span class="chip">Confluence</span><span class="chip">Postman</span><span class="chip">Linux</span><span class="chip">VS Code</span><span class="chip">Kibana</span><span class="chip">Redis</span><span class="chip">Docker</span></div>
       </div>
       <div class="skill-group">
         <div class="k">Engineering Practices</div>
-        <div class="skill-chips"><span class="chip">Production debugging</span><span class="chip">Root-cause analysis</span><span class="chip">Backward-compatible API design</span><span class="chip">Event-driven architecture</span><span class="chip">Dry-run verification</span></div>
+        <div class="skill-chips"><span class="chip">Production debugging</span><span class="chip">Root-cause analysis</span><span class="chip">Backward-compatible API design</span><span class="chip">Event-driven architecture</span><span class="chip">Dry-run verification</span><span class="chip">Row-level locking</span><span class="chip">Code reviews &amp; SOPs</span></div>
       </div>
       <div class="skill-group">
         <div class="k">Domain Knowledge</div>
-        <div class="skill-chips"><span class="chip">E-commerce pricing</span><span class="chip">Loyalty/cashback systems</span><span class="chip">SMS/Push notification gateways</span><span class="chip">CMS &amp; content management</span><span class="chip">Inventory &amp; stock ops</span><span class="chip">Multi-region (India/UAE)</span></div>
+        <div class="skill-chips"><span class="chip">E-commerce pricing</span><span class="chip">Loyalty/cashback systems</span><span class="chip">SMS/Push notification gateways</span><span class="chip">CMS &amp; content management</span><span class="chip">Inventory &amp; stock ops</span><span class="chip">Multi-region (India/UAE)</span><span class="chip">B2B &amp; marketplace (Amazon EDI)</span><span class="chip">Payments (Juspay, COD)</span></div>
       </div>
     </div>
 
@@ -455,7 +520,7 @@
         <a href="https://linkedin.com/in/guna-sekhar-265154232" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
-    <div class="foot-note">// built &amp; maintained by guna — last deployed jul 2026</div>
+    <div class="foot-note">// built &amp; maintained by guna — last deployed nov 2026</div>
   </div>
 </footer>
 
